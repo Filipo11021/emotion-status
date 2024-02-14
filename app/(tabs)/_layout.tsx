@@ -1,59 +1,58 @@
-import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import React from "react";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Link, Tabs } from "expo-router";
+import { Auth } from "@/shared/auth/core";
+import { Navigate } from "@/shared/auth/expo";
+import { Text } from "react-native-ui-lib";
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
-
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+  name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
 }) {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-    </Tabs>
+    <Auth
+      onForbidden={() => <Navigate type="replace" href="/auth/" />}
+      type="protected"
+    >
+      <Tabs>
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: "Your status",
+            tabBarIcon: ({ color }) => (
+              <TabBarIcon name="address-card-o" color={color} />
+            ),
+            tabBarItemStyle: { paddingBottom: 5 },
+          }}
+        />
+        <Tabs.Screen
+          name="global-emotions"
+          options={{
+            title: "Global Emotions",
+            tabBarIcon: ({ color }) => (
+              <TabBarIcon name="globe" color={color} />
+            ),
+            headerRight: () => (
+              <Link style={{ marginRight: 15 }} href="/create-status-modal">
+                <Text $textPrimary>Emote your emotion</Text>
+              </Link>
+            ),
+            tabBarItemStyle: { paddingBottom: 5 },
+          }}
+        />
+        <Tabs.Screen
+          name="settings"
+          options={{
+            title: "Settings",
+            tabBarIcon: ({ color }) => <TabBarIcon name="gear" color={color} />,
+            tabBarItemStyle: { paddingBottom: 5 },
+          }}
+        />
+      </Tabs>
+    </Auth>
   );
 }

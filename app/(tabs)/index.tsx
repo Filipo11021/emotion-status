@@ -1,31 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { MyStatuses } from "@/features/my-statuses/my-statuses";
+import { Link } from "expo-router";
+import { Button, View } from "react-native-ui-lib";
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
-
-export default function TabOneScreen() {
+export default function YourEmotionsView() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+    <View padding-8>
+      <Link asChild href="/create-status-modal">
+        <Button padding-4 label="Emote your emotion" />
+      </Link>
+      <MyStatuses />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
