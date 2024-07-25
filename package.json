@@ -29,6 +29,7 @@
     "expo-splash-screen": "~0.26.4",
     "expo-status-bar": "~1.11.1",
     "expo-web-browser": "~12.8.2",
+    "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.50.1",
@@ -45,6 +46,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/aes-js": "^3.1.4",
+    "@types/lodash": "^4.17.7",
     "@types/react": "~18.2.45",
     "supabase": "^1.142.2",
     "typescript": "^5.1.3"
