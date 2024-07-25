@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "gen:types": ". ./.env && supabase gen types typescript --project-id $EXPO_PUBLIC_SUPABASE_PROJECT_ID > ./shared/database-types.ts"
+    "gen:types": ". ./.env && supabase gen types typescript --project-id $EXPO_PUBLIC_SUPABASE_PROJECT_ID > ./shared/database-types.ts",
+    "lint": "eslint ."
   },
   "jest": {
     "preset": "jest-expo"
@@ -48,6 +49,11 @@
     "@types/aes-js": "^3.1.4",
     "@types/lodash": "^4.17.7",
     "@types/react": "~18.2.79",
+    "eslint": "^8.57.0",
+    "eslint-config-expo": "^7.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.3.3",
     "supabase": "^1.142.2",
     "typescript": "^5.1.3"
   },
