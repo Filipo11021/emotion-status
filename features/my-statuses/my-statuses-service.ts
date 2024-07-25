@@ -11,7 +11,7 @@ export async function myStatusesApi({
     .from("statuses")
     .select("*, profiles ( * )")
     .filter("userId", "eq", session?.user.id)
-    .order('createdAt', {ascending: false});
+    .order("createdAt", { ascending: false });
 
   if (error) throw error;
 

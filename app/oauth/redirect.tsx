@@ -2,7 +2,7 @@ import { Auth } from "@/shared/auth/core";
 import { Navigate, useHandleSessionFromURL } from "@/shared/auth/expo";
 
 export default function AuthRedirectPage() {
-  const { isLoading, data: session, error } = useHandleSessionFromURL();
+  const { isLoading, data: session } = useHandleSessionFromURL();
 
   return (
     <Auth

@@ -36,6 +36,9 @@ export const reasonsData = [
   { label: "health", image: require("@/assets/reasons/health.png") },
   { label: "friends", image: require("@/assets/reasons/friends.png") },
   { label: "family", image: require("@/assets/reasons/family.png") },
-  { label: "social-media", image: require("@/assets/reasons/social-media.png") },
+  {
+    label: "social-media",
+    image: require("@/assets/reasons/social-media.png"),
+  },
   { label: "mail", image: require("@/assets/reasons/mail.png") },
 ] as const;

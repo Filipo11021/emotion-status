@@ -6,8 +6,8 @@ export default function AuthPage() {
 
   return (
     <View center flex style={{ gap: 20 }}>
-			<Text text30>Welcome to</Text>
-			<Text text30>Emotion Status</Text>
+      <Text text30>Welcome to</Text>
+      <Text text30>Emotion Status</Text>
       <Button
         onPress={() => oauth.mutate({ provider: "discord" })}
         label="Login With Discord"

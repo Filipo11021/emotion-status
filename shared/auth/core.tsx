@@ -21,7 +21,7 @@ export const sessionQueryOptions = ({
   });
 
 const supabaseContext = createContext<{ supabase: SupabaseClient } | undefined>(
-  undefined
+  undefined,
 );
 
 export function useSupabase() {
@@ -45,7 +45,7 @@ export function SupabaseAuthProvider({
     supabaseClient.auth.getSession().then(({ data: { session } }) => {
       queryClient.setQueryData<Session | null>(
         sessionQueryOptions({ supabaseClient }).queryKey,
-        () => session ?? null
+        () => session ?? null,
       );
     });
 
@@ -56,7 +56,7 @@ export function SupabaseAuthProvider({
     } = supabaseClient.auth.onAuthStateChange((_, session) => {
       queryClient.setQueryData<Session | null>(
         sessionQueryOptions({ supabaseClient }).queryKey,
-        () => session ?? null
+        () => session ?? null,
       );
     });
 
@@ -76,7 +76,7 @@ export function useSession() {
   const { supabase } = useSupabase();
 
   const { data: session, isLoading } = useQuery(
-    sessionQueryOptions({ supabaseClient: supabase })
+    sessionQueryOptions({ supabaseClient: supabase }),
   );
 
   return { session, isLoading };
@@ -90,7 +90,8 @@ type AuthProps = { type: "protected" | "unprotected"; loading?: ReactNode } & ({
   customSessionState?: ReturnType<typeof useSession>;
 });
 export function Auth(props: AuthProps) {
-  const { session, isLoading } = props.customSessionState ?? useSession();
+  const sessionState = useSession();
+  const { isLoading, session } = props.customSessionState ?? sessionState;
 
   if (isLoading) return <>{props?.loading ?? <LoadingScreen />}</>;
 

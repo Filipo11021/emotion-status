@@ -5,11 +5,10 @@ export async function globalStatusesApi() {
   const { error, data } = await supabase
     .from("statuses")
     .select("*, profiles ( * )")
-    .filter('isStatusPublic', 'eq', true)
+    .filter("isStatusPublic", "eq", true)
     .filter("isNotePublic", "eq", true)
-    .filter('note', 'not.is', null)
-    .order('createdAt', {ascending: false});
-    
+    .filter("note", "not.is", null)
+    .order("createdAt", { ascending: false });
 
   if (error) throw error;
 
@@ -19,4 +18,4 @@ export async function globalStatusesApi() {
 export const globalStatusesQueryOptions = queryOptions({
   queryKey: ["global-statuses"],
   queryFn: globalStatusesApi,
-})
+});

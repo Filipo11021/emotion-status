@@ -1,7 +1,6 @@
 import { Controller } from "react-hook-form";
 import {
   Button,
-  Checkbox,
   GridList,
   GridListItem,
   Spacings,
@@ -151,7 +150,6 @@ export function CreateStatus() {
             control={control}
             name="isStatusPublic"
             render={({ field: { value, onChange } }) => {
-              value;
               return (
                 <View>
                   <Text>Public</Text>
